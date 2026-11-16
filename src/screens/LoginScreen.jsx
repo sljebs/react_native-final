@@ -37,6 +37,7 @@ export default function LoginScreen({ navigation }) {
             onChangeText={onChange}
             value={value}
             autoCapitalize="none"
+            placeholderTextColor="#839187"
           />
         )}
       />
@@ -53,14 +54,20 @@ export default function LoginScreen({ navigation }) {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
+            placeholderTextColor="#839187"
           />
         )}
       />
       {errors.password && <Text style={styles.error}>{errors.password.message}</Text>}
 
       <View style={styles.row}>
-        <Text>Remember Me</Text>
-        <Switch value={rememberMe} onValueChange={setRememberMe} />
+        <Text style={styles.rowLabel}>დამიმახსოვრე</Text>
+        <Switch
+          value={rememberMe}
+          onValueChange={setRememberMe}
+          trackColor={{ false: '#C8D2CA', true: '#78A486' }}
+          thumbColor={rememberMe ? '#1D563B' : '#F3F6F1'}
+        />
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
@@ -68,19 +75,23 @@ export default function LoginScreen({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.linkText}>არ გაქვს ანგარიში? რეგისტრაცია</Text>
+        <Text style={styles.linkText}>
+          არ გაქვს ანგარიში? <Text style={styles.linkUnderline}>რეგისტრაცია</Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20, backgroundColor: '#fff' },
-  title: { fontSize: 26, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
-  input: { borderWidth: 1, borderColor: '#ccc', padding: 12, borderRadius: 8, marginBottom: 10 },
-  error: { color: 'red', fontSize: 12, marginBottom: 10 },
-  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 15 },
-  button: { backgroundColor: '#007AFF', padding: 15, borderRadius: 8, alignItems: 'center' },
-  buttonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
-  linkText: { color: '#007AFF', textAlign: 'center', marginTop: 15 },
+  container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#F3F6F1' },
+  title: { color: '#163D2D', fontFamily: 'Arial', fontSize: 28, fontWeight: '700', marginBottom: 28, textAlign: 'center' },
+  input: { backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#D5E0D7', color: '#20352A', fontFamily: 'Arial', padding: 14, borderRadius: 12, marginBottom: 12 },
+  error: { color: '#B42318', fontFamily: 'Arial', fontSize: 12, marginBottom: 10 },
+  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 16 },
+  rowLabel: { color: '#34483A', fontFamily: 'Arial', fontSize: 15 },
+  linkUnderline: { textDecorationLine: 'underline' },
+  button: { backgroundColor: '#1D563B', padding: 16, borderRadius: 12, alignItems: 'center' },
+  buttonText: { color: '#FFFFFF', fontFamily: 'Arial', fontWeight: '700', fontSize: 16 },
+  linkText: { color: '#1D563B', fontFamily: 'Arial', fontWeight: '600', textAlign: 'center', marginTop: 18 },
 });

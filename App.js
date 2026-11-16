@@ -17,7 +17,16 @@ function Navigation() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: true,
+          headerStyle: { backgroundColor: '#163D2D' },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: { color: '#FFFFFF', fontFamily: 'Arial', fontWeight: '700' },
+          headerShadowVisible: false,
+          contentStyle: { backgroundColor: '#F3F6F1' },
+        }}
+      >
         {user == null ? (
           <>
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
